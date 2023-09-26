@@ -1,0 +1,36 @@
+.navigation-wrapper {
+  position: relative;
+}
+
+.arrow {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  cursor: pointer;
+  border: 1px solid #fff;
+  stroke: #fff;
+  fill: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #f7a582;
+  stroke-width: 0.5 !important;
+}
+
+.arrow--left {
+  left: -22px;
+}
+
+.arrow--right {
+  left: auto;
+  right: -18px;
+}
+
+.arrow--disabled {
+  fill: #f7a582;
+  stroke: #f7a582;
+  background-color: #fff;
+  border: 1px solid #f7a582;
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "_id": 1,
+    "img": "https://img.freepik.com/free-photo/portrait-successful-young-doctor-with-folder-stethoscope_1262-12410.jpg?size=626&ext=jpg",
+    "name": "Dr. John Smith",
+    "designation": "Cardiologist",
+    "rating": 5,
+    "location": "New York, USA",
+    "availableDate": "Sunday, April 10, 2023",
+    "price": 120
+  },
+  {
+    "_id": 2,
+    "img": "https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?size=626&ext=jpg",
+    "name": "Dr. Sophia Martinez",
+    "designation": "Pediatrician",
+    "rating": 4,
+    "location": "Los Angeles, USA",
+    "availableDate": "Monday, May 15, 2023",
+    "price": 95
+  },
+  {
+    "_id": 3,
+    "img": "https://img.freepik.com/free-photo/smiling-doctor-with-stethoscope-isolated-grey_651396-974.jpg?size=626&ext=jpg",
+    "name": "Dr. Michael Johnson",
+    "designation": "Dermatologist",
+    "rating": 4.5,
+    "location": "Chicago, USA",
+    "availableDate": "Saturday, March 25, 2023",
+    "price": 75
+  }
+]

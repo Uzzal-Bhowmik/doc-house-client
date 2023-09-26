@@ -1,0 +1,22 @@
+.keen-slider__slide {
+  padding: 50px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-name-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-name-con img {
+  width: 66px;
+  height: 66px;
+  border-radius: 66px;
+  border: 1px solid #f7a582;
+}

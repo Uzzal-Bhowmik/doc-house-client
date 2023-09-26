@@ -1,0 +1,28 @@
+.react-tabs__tab-list {
+  width: 100%;
+  height: 80px;
+  border-radius: 10px !important;
+  border: 1px solid var(--Dark-06, #e6e6e6) !important;
+  background: #fff;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.react-tabs__tab {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: bold !important;
+  border-radius: 10px !important;
+  border: none !important;
+  bottom: 0 !important;
+}
+
+.react-tabs__tab--selected {
+  background: #f7a582 !important;
+}
+
+.react-tabs__tab:focus:after {
+  content: none !important;
+}
