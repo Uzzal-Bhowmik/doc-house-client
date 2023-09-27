@@ -6,6 +6,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import DynamicDoctor from "../pages/DynamicDoctor/DynamicDoctor";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: "doctor/:id",
-        element: <DynamicDoctor />,
+        element: (
+          <PrivateRoute>
+            <DynamicDoctor />
+          </PrivateRoute>
+        ),
       },
       {
         path: "register",

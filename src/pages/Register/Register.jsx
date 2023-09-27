@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DynamicHelmet from "../../component/DynamicHelmet/DynamicHelmet";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
@@ -10,6 +10,8 @@ const Register = () => {
   const { signUp, updateUserProfile } = useContext(AuthContext);
 
   const { register, handleSubmit } = useForm();
+
+  const navigate = useNavigate();
 
   const handleRegister = (data) => {
     signUp(data.email, data.password)
@@ -20,6 +22,8 @@ const Register = () => {
           updateUserProfile(data.name, data.photo);
         }
         toast.success(`Authenticated as ${result.user?.email}`);
+
+        navigate("/");
       })
       .catch((err) => console.error(err));
   };
