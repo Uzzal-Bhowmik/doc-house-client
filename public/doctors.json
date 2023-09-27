@@ -4,29 +4,144 @@
     "img": "https://img.freepik.com/free-photo/portrait-successful-young-doctor-with-folder-stethoscope_1262-12410.jpg?size=626&ext=jpg",
     "name": "Dr. John Smith",
     "designation": "Cardiologist",
-    "rating": 5,
+    "rating": 4.8,
     "location": "New York, USA",
     "availableDate": "Sunday, April 10, 2023",
-    "price": 120
+    "price": 120,
+    "about": "Dr. John Smith is a highly experienced cardiologist with a passion for improving heart health. With over 15 years of dedicated practice, he has helped countless patients achieve healthier lives. His caring and patient-centered approach make him a trusted name in the field.",
+    "education": [
+      {
+        "university": "Harvard Medical School",
+        "degree": "Doctor of Medicine (MD)",
+        "years": "2001-2005"
+      },
+      {
+        "university": "Johns Hopkins University",
+        "degree": "Master of Public Health (MPH)",
+        "years": "2006-2008"
+      }
+    ],
+    "experience": [
+      {
+        "job": "Cardiologist at New York Heart Center",
+        "years": "2008-present"
+      },
+      {
+        "job": "Clinical Cardiology Fellow at Mount Sinai Hospital",
+        "years": "2005-2008"
+      },
+      {
+        "job": "Medical Researcher at National Institutes of Health",
+        "years": "2001-2005"
+      }
+    ],
+    "services": [
+      "Cardiac Consultation",
+      "EKG and Stress Testing",
+      "Heart Disease Prevention",
+      "Hypertension Management",
+      "Cardiac Rehabilitation"
+    ],
+    "specialization": [
+      "Cardiology",
+      "Heart Disease Prevention",
+      "Hypertension Management",
+      "Cardiac Imaging",
+      "Interventional Cardiology"
+    ]
   },
   {
     "_id": 2,
     "img": "https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?size=626&ext=jpg",
     "name": "Dr. Sophia Martinez",
     "designation": "Pediatrician",
-    "rating": 4,
+    "rating": 4.9,
     "location": "Los Angeles, USA",
     "availableDate": "Monday, May 15, 2023",
-    "price": 95
+    "price": 95,
+    "about": "Dr. Sophia Martinez is a dedicated pediatrician committed to providing the best care for children. With her warm and caring demeanor, she creates a welcoming environment for young patients and their families.",
+    "education": [
+      {
+        "university": "UCLA School of Medicine",
+        "degree": "Doctor of Medicine (MD)",
+        "years": "2004-2008"
+      },
+      {
+        "university": "Children's Hospital Los Angeles",
+        "degree": "Pediatric Residency",
+        "years": "2008-2011"
+      }
+    ],
+    "experience": [
+      {
+        "job": "Pediatrician at Children's Health Clinic",
+        "years": "2011-present"
+      },
+      {
+        "job": "Pediatric Resident at Children's Hospital Los Angeles",
+        "years": "2008-2011"
+      }
+    ],
+    "services": [
+      "Well-Child Checkups",
+      "Immunizations",
+      "Developmental Assessments",
+      "Pediatric Urgent Care",
+      "Newborn Care"
+    ],
+    "specialization": [
+      "Pediatrics",
+      "Child Development",
+      "Immunization",
+      "Pediatric Urgent Care",
+      "Adolescent Medicine"
+    ]
   },
   {
     "_id": 3,
     "img": "https://img.freepik.com/free-photo/smiling-doctor-with-stethoscope-isolated-grey_651396-974.jpg?size=626&ext=jpg",
     "name": "Dr. Michael Johnson",
     "designation": "Dermatologist",
-    "rating": 4.5,
+    "rating": 4.7,
     "location": "Chicago, USA",
     "availableDate": "Saturday, March 25, 2023",
-    "price": 75
+    "price": 75,
+    "about": "Dr. Michael Johnson is a skilled dermatologist known for his expertise in skin health. With a commitment to enhancing his patients' skin and confidence, he offers a wide range of dermatological services and treatments.",
+    "education": [
+      {
+        "university": "Northwestern University Feinberg School of Medicine",
+        "degree": "Doctor of Medicine (MD)",
+        "years": "2006-2010"
+      },
+      {
+        "university": "University of Chicago Medical Center",
+        "degree": "Dermatology Residency",
+        "years": "2010-2014"
+      }
+    ],
+    "experience": [
+      {
+        "job": "Dermatologist at Chicago Skin Care Clinic",
+        "years": "2014-present"
+      },
+      {
+        "job": "Dermatology Resident at University of Chicago Medical Center",
+        "years": "2010-2014"
+      }
+    ],
+    "services": [
+      "Acne Treatment",
+      "Skin Cancer Screening",
+      "Cosmetic Dermatology",
+      "Dermal Fillers",
+      "Laser Skin Rejuvenation"
+    ],
+    "specialization": [
+      "Dermatology",
+      "Cosmetic Dermatology",
+      "Skin Cancer Detection",
+      "Acne Management",
+      "Laser Treatments"
+    ]
   }
 ]

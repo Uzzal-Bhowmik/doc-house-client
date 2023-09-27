@@ -7,8 +7,16 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 const DoctorCard = ({ doctor }) => {
-  const { name, img, price, rating, designation, location, availableDate } =
-    doctor;
+  const {
+    _id,
+    name,
+    img,
+    price,
+    rating,
+    designation,
+    location,
+    availableDate,
+  } = doctor;
 
   return (
     <Card className="p-3">
@@ -45,7 +53,7 @@ const DoctorCard = ({ doctor }) => {
           </div>
         </div>
 
-        <Link className="mt-4 block">
+        <Link className="mt-4 block" to={`/doctor/${_id}`}>
           <Button
             color="warning"
             variant="ghost"

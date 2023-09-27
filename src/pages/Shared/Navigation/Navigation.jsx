@@ -55,7 +55,7 @@ export default function Navigation() {
         </NavbarItem>
 
         <NavbarItem className="flex">
-          <Link to="/" className="text-lg">
+          <Link to="/login" className="text-lg">
             Login
           </Link>
         </NavbarItem>

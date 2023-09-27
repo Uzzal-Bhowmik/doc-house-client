@@ -1,0 +1,6 @@
+.doctor-bio-tabs ul {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+.doctor-bio-lists {
+  list-style: disc;
+}
