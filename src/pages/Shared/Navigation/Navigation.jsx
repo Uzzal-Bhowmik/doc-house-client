@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -7,14 +7,32 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Avatar,
+  Button,
+  Spinner,
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import { AuthContext } from "../../../provider/AuthProvider";
+import toast from "react-hot-toast";
 
-export default function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { user, isLoading, logout } = useContext(AuthContext);
+  const pathname = useLocation().pathname;
 
   const menuItems = ["Home", "About", "Appointment"];
+
+  // logout
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout()
+      .then(() => {
+        toast.success("Logout Successful");
+      })
+      .catch((err) => toast.error(err?.code));
+  };
 
   return (
     <Navbar
@@ -54,11 +72,43 @@ export default function Navigation() {
           </Link>
         </NavbarItem>
 
-        <NavbarItem className="flex">
-          <Link to="/login" className="text-lg">
-            Login
-          </Link>
-        </NavbarItem>
+        {isLoading ? (
+          <Spinner color="success" />
+        ) : (
+          <>
+            {user?.uid ? (
+              <NavbarItem className="flex">
+                <Link className="text-lg flex items-center space-x-3">
+                  <Avatar src={user?.photoURL} />
+                  <Button
+                    color="success"
+                    variant="bordered"
+                    onClick={handleLogout}
+                    type="button"
+                  >
+                    Log Out
+                  </Button>
+                </Link>
+              </NavbarItem>
+            ) : (
+              <>
+                {pathname.includes("login") ? (
+                  <NavbarItem className="flex">
+                    <Link to="/register" className="text-lg">
+                      Register
+                    </Link>
+                  </NavbarItem>
+                ) : (
+                  <NavbarItem className="flex">
+                    <Link to="/login" className="text-lg">
+                      Login
+                    </Link>
+                  </NavbarItem>
+                )}
+              </>
+            )}
+          </>
+        )}
       </NavbarContent>
 
       {/* dropdown menu */}
@@ -82,12 +132,45 @@ export default function Navigation() {
           </NavbarMenuItem>
         ))}
 
-        <NavbarItem>
-          <Link to="/" className="text-lg">
-            Login
-          </Link>
-        </NavbarItem>
+        {isLoading ? (
+          <Spinner color="success" />
+        ) : (
+          <>
+            {user?.uid ? (
+              <NavbarItem className="flex">
+                <Link className="text-lg flex items-center space-x-3">
+                  <Avatar src={user?.photoURL} />
+                  <Button
+                    color="success"
+                    variant="solid"
+                    onClick={handleLogout}
+                  >
+                    Log Out
+                  </Button>
+                </Link>
+              </NavbarItem>
+            ) : (
+              <>
+                {pathname.includes("login") ? (
+                  <NavbarItem className="flex">
+                    <Link to="/login" className="text-lg">
+                      Login
+                    </Link>
+                  </NavbarItem>
+                ) : (
+                  <NavbarItem className="flex">
+                    <Link to="/register" className="text-lg">
+                      Register
+                    </Link>
+                  </NavbarItem>
+                )}
+              </>
+            )}
+          </>
+        )}
       </NavbarMenu>
     </Navbar>
   );
-}
+};
+
+export default Navigation;

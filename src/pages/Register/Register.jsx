@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import DynamicHelmet from "../../component/DynamicHelmet/DynamicHelmet";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { signUp, updateUserProfile } = useContext(AuthContext);
+
+  const { register, handleSubmit } = useForm();
 
   const handleRegister = (data) => {
-    console.log(data);
+    signUp(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+
+        if (result.user?.uid) {
+          updateUserProfile(data.name, data.photo);
+        }
+        toast.success(`Authenticated as ${result.user?.email}`);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
+      <DynamicHelmet pageName="Register" />
+
       <LoginBanner></LoginBanner>
 
       {/* register form */}
@@ -36,6 +48,7 @@ const Register = () => {
               {...register("name")}
               placeholder="Enter your name"
               className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
+              required
             />
           </div>
           <div className="mb-4">
@@ -45,6 +58,7 @@ const Register = () => {
               {...register("photo")}
               placeholder="Enter profile pic link"
               className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
+              required
             />
           </div>
           <div className="mb-4">
@@ -61,7 +75,7 @@ const Register = () => {
             <label className="font-bold block mb-2">Password</label>
             <input
               type="password"
-              {...register("name")}
+              {...register("password")}
               placeholder="Enter your password"
               className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
               required

@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
+
+  const { signIn } = useContext(AuthContext);
 
   const handleLogin = (data) => {
-    console.log(data);
+    signIn(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success(`Authenticated as ${result.user?.email}`);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -43,7 +48,7 @@ const Login = () => {
             <label className="font-bold block mb-2">Password</label>
             <input
               type="password"
-              {...register("name")}
+              {...register("password")}
               placeholder="Enter your password"
               className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
               required
