@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import useAuthContext from "../../hooks/useAuthContext";
 import axios from "axios";
 import useServices from "../../hooks/useServices";
+import Swal from "sweetalert2";
 
 const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
   const { user } = useAuthContext();
@@ -33,8 +34,14 @@ const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
             })
             .then((res) => {
               if (res.data.modifiedCount > 0) {
-                alert("appointment successful");
                 refetch();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Your appointment has been successfully scheduled",
+                  showConfirmButton: false,
+                  timer: 2500,
+                });
               }
             });
         }

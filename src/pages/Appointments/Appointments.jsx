@@ -18,25 +18,7 @@ const Appointments = () => {
   }, [selected]);
 
   let services = useServices()[0];
-  // useEffect(() => {
-  //   if (services[0]) {
-  //     services[0].active = true;
-  //   }
-  // }, [services]);
-
-  // add id of the selected service to state
   const handleService = (_id) => {
-    // const updatedServices = services.map((service) => {
-    //   if (service._id === _id) {
-    //     service["active"] = true;
-    //   } else {
-    //     service["active"] = false;
-    //   }
-    //   return service;
-    // });
-
-    // services = updatedServices;
-
     setSelectedServiceId(_id);
   };
 
