@@ -67,7 +67,7 @@ const Navigation = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" to="/" className="text-lg">
+          <Link color="foreground" to="/appointment" className="text-lg">
             Appointments
           </Link>
         </NavbarItem>

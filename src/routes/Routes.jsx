@@ -7,6 +7,7 @@ import DynamicDoctor from "../pages/DynamicDoctor/DynamicDoctor";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Appointments from "../pages/Appointments/Appointments";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,8 @@ const router = createBrowserRouter([
       },
       {
         path: "doctor/:id",
+        loader: async ({ params }) =>
+          await fetch(`http://localhost:5000/doctors/${params.id}`),
         element: (
           <PrivateRoute>
             <DynamicDoctor />
@@ -33,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "appointment",
+        element: (
+          <PrivateRoute>
+            <Appointments />
+          </PrivateRoute>
+        ),
       },
     ],
   },

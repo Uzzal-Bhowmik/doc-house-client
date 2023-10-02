@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Doctors.css";
 import DoctorCard from "../../../component/DoctorCard/DoctorCard";
+import axios from "axios";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
-    fetch("/doctors.json")
-      .then((res) => res.json())
-      .then((data) => setDoctors(data));
+    axios
+      .get("http://localhost:5000/doctors")
+      .then((res) => setDoctors(res.data));
   }, []);
   return (
     <div>

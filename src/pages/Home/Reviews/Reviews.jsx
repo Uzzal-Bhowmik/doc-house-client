@@ -3,13 +3,18 @@ import "./Reviews.css";
 import ReviewCard from "../../../component/ReviewCard/ReviewCard";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import axios from "axios";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("/reviews.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
+    // fetch("/reviews.json")
+    //   .then((res) => res.json())
+    //   .then((data) => setReviews(data));
+
+    axios
+      .get("http://localhost:5000/reviews")
+      .then((res) => setReviews(res.data));
   }, []);
 
   // keen slider

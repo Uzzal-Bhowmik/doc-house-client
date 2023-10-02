@@ -1,34 +1,29 @@
 [
   {
-    "_id": 1,
     "img": "https://randomuser.me/api/portraits/women/8.jpg",
     "name": "Emily Johnson",
     "profession": "Dental Hygienist",
     "review": "I recently had the pleasure of visiting this dental clinic, and I couldn't be happier with the care I received. The staff was exceptionally friendly, and the dental therapy I received was top-notch. My smile has never felt better. I highly recommend their services!"
   },
   {
-    "_id": 2,
     "img": "https://randomuser.me/api/portraits/men/1.jpg",
     "name": "David Smith",
     "profession": "Accountant",
     "review": "I was a bit apprehensive about my dental therapy, but the team here put me at ease. The professionalism and expertise were evident from the moment I walked in. I can confidently say that this clinic has raised the bar for dental care. Thank you!"
   },
   {
-    "_id": 3,
     "img": "https://randomuser.me/api/portraits/women/55.jpg",
     "name": "Sophia Martinez",
     "profession": "Teacher",
     "review": "As a teacher, I value a healthy smile. The dental therapies offered here exceeded my expectations. The attention to detail and personalized care were impressive. I'm so grateful for their services and can't wait to share my positive experience with my students."
   },
   {
-    "_id": 4,
     "img": "https://randomuser.me/api/portraits/women/49.jpg",
     "name": "Olivia Anderson",
     "profession": "Graphic Designer",
     "review": "I've had my fair share of dental experiences, but this clinic truly stands out. The ambiance is relaxing, and the dental therapists are skilled and attentive. My smile has been transformed, and I couldn't be happier with the results. Highly recommend!"
   },
   {
-    "_id": 5,
     "img": "https://randomuser.me/api/portraits/women/67.jpg",
     "name": "Ella White",
     "profession": "Marketing Manager",

@@ -1,6 +1,5 @@
 [
   {
-    "_id": 1,
     "img": "https://img.freepik.com/free-photo/portrait-successful-young-doctor-with-folder-stethoscope_1262-12410.jpg?size=626&ext=jpg",
     "name": "Dr. John Smith",
     "designation": "Cardiologist",
@@ -51,7 +50,6 @@
     ]
   },
   {
-    "_id": 2,
     "img": "https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?size=626&ext=jpg",
     "name": "Dr. Sophia Martinez",
     "designation": "Pediatrician",
@@ -98,7 +96,6 @@
     ]
   },
   {
-    "_id": 3,
     "img": "https://img.freepik.com/free-photo/smiling-doctor-with-stethoscope-isolated-grey_651396-974.jpg?size=626&ext=jpg",
     "name": "Dr. Michael Johnson",
     "designation": "Dermatologist",

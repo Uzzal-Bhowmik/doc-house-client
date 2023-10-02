@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./DynamicDoctor.css";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import SharedBanner from "../Shared/SharedBanner/SharedBanner";
 import DynamicHelmet from "../../component/DynamicHelmet/DynamicHelmet";
 import { Card, CardBody, Chip, Image } from "@nextui-org/react";
@@ -9,19 +9,21 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import DoctorBio from "./DoctorBio/DoctorBio";
 
 const DynamicDoctor = () => {
-  const id = useParams().id;
+  // const id = useParams().id;
 
-  const [doctorInfo, setDoctorInfo] = useState([]);
-  useEffect(() => {
-    fetch("/doctors.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const selectedDoctor = data.find(
-          (doctor) => doctor._id === parseInt(id)
-        );
-        setDoctorInfo(selectedDoctor);
-      });
-  }, [id]);
+  // const [doctorInfo, setDoctorInfo] = useState([]);
+  // useEffect(() => {
+  //   fetch("/doctors.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const selectedDoctor = data.find(
+  //         (doctor) => doctor._id === parseInt(id)
+  //       );
+  //       setDoctorInfo(selectedDoctor);
+  //     });
+  // }, [id]);
+
+  const doctorInfo = useLoaderData();
 
   const { name, img, designation, rating, location, specialization } =
     doctorInfo;
