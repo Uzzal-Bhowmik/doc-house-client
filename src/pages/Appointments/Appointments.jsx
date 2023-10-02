@@ -100,20 +100,17 @@ const Appointments = () => {
                     </h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-fit mx-auto my-12">
-                      {service.availableSlot?.map((slotObject) => (
-                        <div key={slotObject.slot}>
-                          {slotObject.bookedDates.includes(selectedDate) ? (
-                            ""
-                          ) : (
+                      {service.availableSlot?.map(
+                        (slotObject) =>
+                          !slotObject.bookedDates.includes(selectedDate) && (
                             <AvailableSlotCard
                               key={slotObject.slot}
                               slotObject={slotObject}
                               service={service}
                               selectedDate={selectedDate}
                             />
-                          )}
-                        </div>
-                      ))}
+                          )
+                      )}
                     </div>
                   </>
                 )}
