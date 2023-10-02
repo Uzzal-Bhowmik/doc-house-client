@@ -40,7 +40,6 @@ const Appointments = () => {
     setSelectedServiceId(_id);
   };
 
-  console.log(services);
   return (
     <div>
       <SharedBanner route={"Home/Appointment"} title={"Appointment"} />
@@ -52,6 +51,7 @@ const Appointments = () => {
               mode="single"
               selected={selected}
               onSelect={setSelected}
+              disabled={{ before: new Date() }}
               style={{
                 width: "312px",
                 height: "312px",
