@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import "./Navigation.css";
 import {
   Navbar,
   NavbarBrand,
@@ -38,10 +39,15 @@ const Navigation = () => {
       .catch((err) => toast.error(err?.code));
   };
 
+  // for dashboard nav class
+  const isDashboard = pathname.includes("dashboard");
+
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="py-4 absolute top-0 bg-[var(--pri-color)] text-[#f3f3f3] z-10"
+      className={`py-4 absolute top-0 bg-[var(--pri-color)] text-[#f3f3f3] z-10 ${
+        isDashboard && "dashboard-nav"
+      }`}
       shouldHideOnScroll
     >
       {/* brand logo */}
@@ -59,7 +65,10 @@ const Navigation = () => {
       </NavbarContent>
 
       {/* lg device navbar links */}
-      <NavbarContent className="hidden sm:flex gap-8 text-[18px]" justify="end">
+      <NavbarContent
+        className="hidden sm:flex gap-8 text-[18px] w-[90%]"
+        justify="end"
+      >
         <NavbarItem>
           <Link color="foreground" to="/" className="text-lg">
             Home
