@@ -9,20 +9,6 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import DoctorBio from "./DoctorBio/DoctorBio";
 
 const DynamicDoctor = () => {
-  // const id = useParams().id;
-
-  // const [doctorInfo, setDoctorInfo] = useState([]);
-  // useEffect(() => {
-  //   fetch("/doctors.json")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const selectedDoctor = data.find(
-  //         (doctor) => doctor._id === parseInt(id)
-  //       );
-  //       setDoctorInfo(selectedDoctor);
-  //     });
-  // }, [id]);
-
   const doctorInfo = useLoaderData();
 
   const { name, img, designation, rating, location, specialization } =

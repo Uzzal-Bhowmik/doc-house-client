@@ -91,7 +91,7 @@ const Navigation = () => {
           <>
             {user?.uid ? (
               <NavbarItem className="flex">
-                <li className="text-lg flex items-center space-x-3">
+                <p className="text-lg flex items-center space-x-3">
                   <Dropdown>
                     <DropdownTrigger>
                       <Avatar src={user?.photoURL} className="cursor-pointer" />
@@ -113,7 +113,7 @@ const Navigation = () => {
                   >
                     Log Out
                   </Button>
-                </li>
+                </p>
               </NavbarItem>
             ) : (
               <>
@@ -163,7 +163,7 @@ const Navigation = () => {
           <>
             {user?.uid ? (
               <NavbarItem className="flex">
-                <li className="text-lg flex items-center space-x-3">
+                <p className="text-lg flex items-center space-x-3">
                   <Dropdown placement="bottom-end">
                     <DropdownTrigger>
                       <Avatar src={user?.photoURL} className="cursor-pointer" />
@@ -184,7 +184,7 @@ const Navigation = () => {
                   >
                     Log Out
                   </Button>
-                </li>
+                </p>
               </NavbarItem>
             ) : (
               <>

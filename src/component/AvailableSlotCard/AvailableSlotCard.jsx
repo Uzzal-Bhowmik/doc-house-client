@@ -22,12 +22,17 @@ const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
   const { register, handleSubmit } = useForm();
 
   const handleBookAppointment = (data) => {
+    // add service name to data obj
+    data.service = service?.serviceName;
+
+    // add appointment from appointments collection in db
     axios
       .post("http://localhost:5000/appointments", data)
       .then((res) => {
         if (res.data.insertedId) {
+          // update(add) bookedDates array in services collection
           axios
-            .patch("http://localhost:5000/services", {
+            .patch("http://localhost:5000/services/addDate", {
               _id: service._id,
               bookedSlotTime: data.slotTime,
               bookedDate: data.appointmentDate,

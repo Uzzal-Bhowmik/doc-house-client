@@ -317,7 +317,7 @@ const DashboardLayout = () => {
         {/* Sidebar */}
 
         {/*--------------- Content -----------------*/}
-        <div className="h-full ml-14 mt-24 mb-10 md:ml-64">
+        <div className="min-h-screen ml-14 pt-24 md:ml-64 bg-[#f1f5f9]">
           <Outlet />
         </div>
       </div>
