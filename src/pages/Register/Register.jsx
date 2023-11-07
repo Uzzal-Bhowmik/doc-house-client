@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
+import "./Register.css";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import DynamicHelmet from "../../component/DynamicHelmet/DynamicHelmet";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
+
+const imgUploadToken = import.meta.env.VITE_image_upload_token;
 
 const Register = () => {
   const { signUp, updateUserProfile } = useContext(AuthContext);
@@ -14,18 +18,37 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
-    signUp(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
+    // uploading image to imgbb and converting to link
+    const imgUploadURL = `https://api.imgbb.com/1/upload?expiration=500&key=${imgUploadToken}`;
 
-        if (result.user?.uid) {
-          updateUserProfile(data.name, data.photo);
+    const formData = new FormData();
+    formData.append("image", data.photo[0]);
+
+    fetch(imgUploadURL, {
+      method: "post",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgHostingResponse) => {
+        // sign up if img upload is successful
+        if (imgHostingResponse.success) {
+          const photoUrl = imgHostingResponse.data.display_url;
+          data["photo"] = photoUrl;
+
+          signUp(data.email, data.password)
+            .then((result) => {
+              console.log(result.user);
+
+              if (result.user?.uid) {
+                updateUserProfile(data.name, data.photo);
+              }
+              toast.success(`Authenticated as ${result.user?.email}`);
+
+              navigate("/");
+            })
+            .catch((err) => console.error(err));
         }
-        toast.success(`Authenticated as ${result.user?.email}`);
-
-        navigate("/");
-      })
-      .catch((err) => console.error(err));
+      });
   };
 
   return (
@@ -37,7 +60,6 @@ const Register = () => {
       {/* register form */}
       <div className="md:pt-28 md:pb-5 flex justify-center items-center">
         <form
-          action=""
           className="border-1 w-[60%] p-8"
           onSubmit={handleSubmit(handleRegister)}
         >
@@ -55,16 +77,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="font-bold block mb-2">Photo</label>
-            <input
-              type="text"
-              {...register("photo")}
-              placeholder="Enter profile pic link"
-              className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
-              required
-            />
-          </div>
+
           <div className="mb-4">
             <label className="font-bold block mb-2">Email</label>
             <input
@@ -81,6 +94,16 @@ const Register = () => {
               type="password"
               {...register("password")}
               placeholder="Enter your password"
+              className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="font-bold block mb-2">Photo</label>
+            <input
+              type="file"
+              {...register("photo")}
               className="w-full p-3 rounded-lg bg-[#f3f3f3] outline-none"
               required
             />

@@ -6,12 +6,15 @@ import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
   const pathname = useLocation().pathname;
-  const isLogin = pathname.includes("login") || pathname.includes("register");
+  const hideFooter =
+    pathname.includes("login") ||
+    pathname.includes("register") ||
+    pathname.includes("dashboard");
   return (
     <div>
       <Navigation />
       <Outlet />
-      {!isLogin && <Footer />}
+      {!hideFooter && <Footer />}
 
       <Toaster
         toastOptions={{

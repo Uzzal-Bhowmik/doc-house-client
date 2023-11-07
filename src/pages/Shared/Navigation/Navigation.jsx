@@ -10,6 +10,10 @@ import {
   Avatar,
   Button,
   Spinner,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
@@ -68,7 +72,7 @@ const Navigation = () => {
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" to="/appointment" className="text-lg">
-            Appointments
+            Make Appointment
           </Link>
         </NavbarItem>
 
@@ -78,8 +82,20 @@ const Navigation = () => {
           <>
             {user?.uid ? (
               <NavbarItem className="flex">
-                <Link className="text-lg flex items-center space-x-3">
-                  <Avatar src={user?.photoURL} />
+                <li className="text-lg flex items-center space-x-3">
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Avatar src={user?.photoURL} className="cursor-pointer" />
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Dropdown">
+                      <DropdownItem key={"my_appointments"}>
+                        <Link to="/dashboard/myAppointments">
+                          My Appointments
+                        </Link>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+
                   <Button
                     color="success"
                     variant="bordered"
@@ -88,7 +104,7 @@ const Navigation = () => {
                   >
                     Log Out
                   </Button>
-                </Link>
+                </li>
               </NavbarItem>
             ) : (
               <>
@@ -138,8 +154,20 @@ const Navigation = () => {
           <>
             {user?.uid ? (
               <NavbarItem className="flex">
-                <Link className="text-lg flex items-center space-x-3">
-                  <Avatar src={user?.photoURL} />
+                <li className="text-lg flex items-center space-x-3">
+                  <Dropdown placement="bottom-end">
+                    <DropdownTrigger>
+                      <Avatar src={user?.photoURL} className="cursor-pointer" />
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Profile Actions" variant="flat">
+                      <DropdownItem key={"my_appointments"}>
+                        <Link to="/dashboard/myAppointments">
+                          My Appointments
+                        </Link>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+
                   <Button
                     color="success"
                     variant="solid"
@@ -147,7 +175,7 @@ const Navigation = () => {
                   >
                     Log Out
                   </Button>
-                </Link>
+                </li>
               </NavbarItem>
             ) : (
               <>
