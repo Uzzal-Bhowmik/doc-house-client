@@ -18,20 +18,19 @@ import {
 } from "@nextui-org/react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import { AuthContext } from "../../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAuthContext from "../../../hooks/useAuthContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { user, isLoading, logout } = useContext(AuthContext);
+  const { user, isLoading, logout } = useAuthContext();
   const pathname = useLocation().pathname;
 
   const menuItems = ["Home", "About", "Appointment"];
 
   // logout
-  const handleLogout = (e) => {
-    e.preventDefault();
+  const handleLogout = () => {
     logout()
       .then(() => {
         toast.success("Logout Successful");

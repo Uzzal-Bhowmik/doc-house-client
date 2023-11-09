@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -41,18 +42,32 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // observer
+  // auth state observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
+
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/jwt", { userEmail: currentUser.email })
+          .then((res) => {
+            localStorage.setItem("doc-house-jwt-token", res.data.token); // set jwt token to local-storage when user logged in
+          });
+      } else {
+        localStorage.removeItem("doc-house-jwt-token"); // remove jwt token when user logged out
+      }
     });
 
     return () => unsubscribe();
   }, []);
 
   const value = { signIn, signUp, logout, updateUserProfile, user, isLoading };
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <>
+      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    </>
+  );
 };
 
 export default AuthProvider;

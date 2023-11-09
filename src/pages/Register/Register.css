@@ -6,3 +6,7 @@ input::-webkit-file-upload-button {
   margin-right: 15px;
   cursor: pointer;
 }
+
+button:disabled {
+  background-color: lightgray;
+}

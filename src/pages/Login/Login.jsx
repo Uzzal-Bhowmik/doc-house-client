@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import { Spinner } from "@nextui-org/react";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const { signIn } = useContext(AuthContext);
 
@@ -15,6 +17,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (data) => {
+    setLoginLoading(true);
     signIn(data.email, data.password)
       .then((result) => {
         console.log(result.user);
@@ -22,7 +25,8 @@ const Login = () => {
 
         navigate(from, { replace: true });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(`Login Failed: ${err.code}`));
+    setLoginLoading(false);
   };
 
   return (
@@ -64,8 +68,18 @@ const Login = () => {
           <button
             type="submit"
             className="w-full h-[50px] bg-[var(--sec-color)] text-white font-bold rounded-lg"
+            disabled={loginLoading}
           >
-            Sign In
+            {!loginLoading ? (
+              "Login"
+            ) : (
+              <Spinner
+                size="md"
+                color="warning"
+                labelColor="warning"
+                className="inline-block mx-auto mt-2"
+              />
+            )}
           </button>
 
           <p className="text-center mt-3">

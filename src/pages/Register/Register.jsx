@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Register.css";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
@@ -6,20 +6,24 @@ import { Link, useNavigate } from "react-router-dom";
 import DynamicHelmet from "../../component/DynamicHelmet/DynamicHelmet";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import { Spinner } from "@nextui-org/react";
 import axios from "axios";
 
 const imgUploadToken = import.meta.env.VITE_image_upload_token;
 
 const Register = () => {
   const { signUp, updateUserProfile } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
+    setLoading(true);
+
     // uploading image to imgbb and converting to link
-    const imgUploadURL = `https://api.imgbb.com/1/upload?expiration=500&key=${imgUploadToken}`;
+    const imgUploadURL = `https://api.imgbb.com/1/upload?key=${imgUploadToken}`;
 
     const formData = new FormData();
     formData.append("image", data.photo[0]);
@@ -40,13 +44,32 @@ const Register = () => {
               console.log(result.user);
 
               if (result.user?.uid) {
-                updateUserProfile(data.name, data.photo);
-              }
-              toast.success(`Authenticated as ${result.user?.email}`);
+                updateUserProfile(data.name, data.photo)
+                  .then(() => {
+                    // set user data to db
+                    axios
+                      .post("http://localhost:5000/users", {
+                        name: data.name,
+                        email: data.email,
+                      })
+                      .then((res) => {
+                        console.log(res.data);
+                        if (res.data.insertedId) {
+                          toast.success(
+                            `Authenticated as ${result.user?.email}`
+                          );
 
-              navigate("/");
+                          navigate("/");
+                        }
+                      });
+                  })
+                  .catch((err) => console.log(err));
+              }
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+              toast.error(`Sign Up Failed: ${err.code}`);
+            });
+          setLoading(false);
         }
       });
   };
@@ -112,8 +135,18 @@ const Register = () => {
           <button
             type="submit"
             className="w-full h-[50px] bg-[var(--sec-color)] text-white font-bold rounded-lg"
+            disabled={loading}
           >
-            Create Account
+            {!loading ? (
+              "Create Account"
+            ) : (
+              <Spinner
+                size="md"
+                color="warning"
+                labelColor="warning"
+                className="inline-block mx-auto mt-2"
+              />
+            )}
           </button>
 
           <p className="text-center mt-3">
