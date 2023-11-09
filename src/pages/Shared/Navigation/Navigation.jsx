@@ -20,6 +20,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import toast from "react-hot-toast";
 import useAuthContext from "../../../hooks/useAuthContext";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +29,8 @@ const Navigation = () => {
   const pathname = useLocation().pathname;
 
   const menuItems = ["Home", "About", "Appointment"];
+
+  const [isAdmin] = useAdmin();
 
   // logout
   const handleLogout = () => {
@@ -96,11 +99,17 @@ const Navigation = () => {
                       <Avatar src={user?.photoURL} className="cursor-pointer" />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Dropdown">
-                      <DropdownItem key={"my_appointments"}>
-                        <Link to="/dashboard/myAppointments">
-                          My Appointments
-                        </Link>
-                      </DropdownItem>
+                      {isAdmin ? (
+                        <DropdownItem key={"my_appointments"}>
+                          <Link to="/dashboard/adminhome">Dashboard</Link>
+                        </DropdownItem>
+                      ) : (
+                        <DropdownItem key={"my_appointments"}>
+                          <Link to="/dashboard/myAppointments">
+                            My Appointments
+                          </Link>
+                        </DropdownItem>
+                      )}
                     </DropdownMenu>
                   </Dropdown>
 
@@ -168,11 +177,17 @@ const Navigation = () => {
                       <Avatar src={user?.photoURL} className="cursor-pointer" />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Profile Actions" variant="flat">
-                      <DropdownItem key={"my_appointments"}>
-                        <Link to="/dashboard/myAppointments">
-                          My Appointments
-                        </Link>
-                      </DropdownItem>
+                      {isAdmin ? (
+                        <DropdownItem key={"my_appointments"}>
+                          <Link to="/dashboard/adminhome">Dashboard</Link>
+                        </DropdownItem>
+                      ) : (
+                        <DropdownItem key={"my_appointments"}>
+                          <Link to="/dashboard/myAppointments">
+                            My Appointments
+                          </Link>
+                        </DropdownItem>
+                      )}
                     </DropdownMenu>
                   </Dropdown>
 

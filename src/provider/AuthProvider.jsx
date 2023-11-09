@@ -46,13 +46,13 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setIsLoading(false);
 
       if (currentUser) {
         axios
           .post("http://localhost:5000/jwt", { userEmail: currentUser.email })
           .then((res) => {
             localStorage.setItem("doc-house-jwt-token", res.data.token); // set jwt token to local-storage when user logged in
+            setIsLoading(false);
           });
       } else {
         localStorage.removeItem("doc-house-jwt-token"); // remove jwt token when user logged out
