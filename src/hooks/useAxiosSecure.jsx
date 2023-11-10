@@ -3,14 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "./useAuthContext";
 
+// Create an interceptor instance of Axios with a base URL
+const axiosInterceptor = axios.create({
+  baseURL: "http://localhost:5000",
+});
+
 const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logout } = useAuthContext();
-
-  // Create an interceptor instance of Axios with a base URL
-  const axiosInterceptor = axios.create({
-    baseURL: "http://localhost:5000",
-  });
 
   // Add an interceptor to inject the authorization header
   axiosInterceptor.interceptors.request.use(

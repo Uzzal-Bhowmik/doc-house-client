@@ -22,6 +22,8 @@ import {
 import { Select, SelectItem } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Payment from "../../Payment/Payment";
+import useAppointments from "../../../hooks/useAppointments";
 
 const MyAppointments = () => {
   const { user } = useAuthContext();
@@ -29,11 +31,13 @@ const MyAppointments = () => {
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [appointmentDates, setAppointmentDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState("all");
-  const [appointmentsDidUpdate, setAppointmentsDidUpdate] = useState(false);
+  // const [appointmentsDidUpdate, setAppointmentsDidUpdate] = useState(false);
   const [axiosInterceptor] = useAxiosSecure();
   const [dataLoading, setDataLoading] = useState(true);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedAppointment, setSelectedAppointment] = useState({});
+
+  const [userAppointments, refetch] = useAppointments();
 
   const handlePay = (appointment) => {
     setSelectedAppointment(appointment);
@@ -42,11 +46,9 @@ const MyAppointments = () => {
 
   // load user appointments data
   useEffect(() => {
-    axiosInterceptor.get(`/appointments?email=${user?.email}`).then((res) => {
-      setAllAppointments(res.data);
-      setDataLoading(false);
-    });
-  }, [user, appointmentsDidUpdate, axiosInterceptor]);
+    setAllAppointments(userAppointments);
+    setDataLoading(false);
+  }, [user, axiosInterceptor, userAppointments]);
 
   // set appointment dates
   useEffect(() => {
@@ -110,7 +112,7 @@ const MyAppointments = () => {
                 })
                 .then((res) => {
                   if (res.data.modifiedCount > 0) {
-                    setAppointmentsDidUpdate(!appointmentsDidUpdate);
+                    refetch();
                     Swal.fire({
                       position: "center",
                       icon: "success",
@@ -223,13 +225,22 @@ const MyAppointments = () => {
                 </TableCell>
 
                 <TableCell className="text-md">
-                  <Button
-                    size="sm"
-                    className="bg-green-700 text-md text-white"
-                    onClick={() => handlePay(appointment)}
-                  >
-                    Pay
-                  </Button>
+                  {appointment?.payment?.status === "paid" ? (
+                    <div>
+                      <p className="font-bold">PAID</p>
+                      <p className="text-success-500">
+                        TnxID: {appointment.payment.transactionId}
+                      </p>
+                    </div>
+                  ) : (
+                    <Button
+                      size="sm"
+                      className="bg-green-700 text-md text-white"
+                      onClick={() => handlePay(appointment)}
+                    >
+                      Pay
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
@@ -266,18 +277,16 @@ const MyAppointments = () => {
 
                 <Divider className="my-3" />
 
-                <form className="appointment-form">
-                  <input type="text" placeholder="Phone" required />
+                {/* payment method */}
+                <Payment
+                  price={selectedAppointment?.price}
+                  appointmentId={selectedAppointment?._id}
+                />
+                {/* ---------- */}
 
-                  <Button color="danger" variant="light" onPress={onClose}>
+                <form className="appointment-form">
+                  <Button color="danger" onPress={onClose}>
                     Close
-                  </Button>
-                  <Button
-                    type="submit"
-                    color="success"
-                    className="uppercase text-white"
-                  >
-                    Book Now
                   </Button>
                 </form>
               </ModalBody>
