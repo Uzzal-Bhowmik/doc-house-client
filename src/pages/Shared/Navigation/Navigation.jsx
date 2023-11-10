@@ -58,12 +58,14 @@ const Navigation = () => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand>
-          <img src={logo} alt="logo" className="h-[50px]" />
-          <p className="font-bold text-[30px] pl-3">
-            <span className="text-[var(--sec-color)]">Doc</span> House
-          </p>
-        </NavbarBrand>
+        <Link to="/">
+          <NavbarBrand>
+            <img src={logo} alt="logo" className="h-[50px]" />
+            <p className="font-bold text-[30px] pl-3">
+              <span className="text-[var(--sec-color)]">Doc</span> House
+            </p>
+          </NavbarBrand>
+        </Link>
       </NavbarContent>
 
       {/* lg device navbar links */}
@@ -98,19 +100,27 @@ const Navigation = () => {
                     <DropdownTrigger>
                       <Avatar src={user?.photoURL} className="cursor-pointer" />
                     </DropdownTrigger>
-                    <DropdownMenu aria-label="Dropdown">
-                      {isAdmin ? (
+
+                    {isAdmin ? (
+                      // admin dropdown menu
+                      <DropdownMenu aria-label="Dropdown">
                         <DropdownItem key={"my_appointments"}>
                           <Link to="/dashboard/adminhome">Dashboard</Link>
                         </DropdownItem>
-                      ) : (
+                      </DropdownMenu>
+                    ) : (
+                      // user dropdown menu
+                      <DropdownMenu aria-label="Dropdown">
+                        <DropdownItem key={"user_home"}>
+                          <Link to="/dashboard/userhome">Dashboard</Link>
+                        </DropdownItem>
                         <DropdownItem key={"my_appointments"}>
                           <Link to="/dashboard/myAppointments">
                             My Appointments
                           </Link>
                         </DropdownItem>
-                      )}
-                    </DropdownMenu>
+                      </DropdownMenu>
+                    )}
                   </Dropdown>
 
                   <Button

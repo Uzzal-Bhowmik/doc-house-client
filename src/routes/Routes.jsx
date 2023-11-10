@@ -13,6 +13,7 @@ import MyAppointments from "../pages/Dashboard/MyAppointments/MyAppointments";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+          {
+            path: "userhome",
+            element: <UserHome />,
+          },
           {
             path: "myAppointments",
             element: <MyAppointments />,

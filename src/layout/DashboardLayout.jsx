@@ -158,6 +158,33 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <Link
+                    to="/dashboard/userhome"
+                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                  >
+                    <span className="inline-flex justify-center items-center ml-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#ffffff"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                      </svg>
+                    </span>
+                    <span className="ml-2 text-sm tracking-wide truncate">
+                      User Home
+                    </span>
+                  </Link>
+                </li>
+                {/* --------------------------- */}
+                <li>
+                  <Link
                     to="/dashboard/myAppointments"
                     className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
                   >
@@ -181,6 +208,59 @@ const DashboardLayout = () => {
                     </span>
                     <span className="ml-2 text-sm tracking-wide truncate">
                       My Appointments
+                    </span>
+                  </Link>
+                </li>
+                {/* --------------------- */}
+                <li>
+                  <Link
+                    to="/dashboard/myAppointments"
+                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                  >
+                    <span className="inline-flex justify-center items-center ml-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#ffffff"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                      </svg>
+                    </span>
+                    <span className="ml-2 text-sm tracking-wide truncate">
+                      Payment History
+                    </span>
+                  </Link>
+                </li>
+                {/* ------------------------------- */}
+                <li>
+                  <Link
+                    to="/dashboard/myAppointments"
+                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                  >
+                    <span className="inline-flex justify-center items-center ml-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#ffffff"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    </span>
+                    <span className="ml-2 text-sm tracking-wide truncate">
+                      Add Review
                     </span>
                   </Link>
                 </li>
@@ -265,7 +345,7 @@ const DashboardLayout = () => {
         {/* Sidebar */}
 
         {/*--------------- Content -----------------*/}
-        <div className="min-h-screen ml-14 pt-24 md:ml-64 bg-[#f1f5f9]">
+        <div className="min-h-screen ml-14 pt-32 md:ml-64 bg-[#f1f5f9] p-8">
           <Outlet />
         </div>
       </div>

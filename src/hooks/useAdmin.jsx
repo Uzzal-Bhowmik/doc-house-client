@@ -2,7 +2,6 @@ import React from "react";
 import useAuthContext from "./useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
-import axios from "axios";
 
 const useAdmin = () => {
   const [axiosInterceptor] = useAxiosSecure();

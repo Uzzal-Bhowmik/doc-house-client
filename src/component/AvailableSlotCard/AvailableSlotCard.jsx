@@ -13,11 +13,13 @@ import useAuthContext from "../../hooks/useAuthContext";
 import axios from "axios";
 import useServices from "../../hooks/useServices";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
   const { user } = useAuthContext();
   const refetch = useServices()[1];
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [axiosInterceptor] = useAxiosSecure();
 
   const { register, handleSubmit } = useForm();
 
@@ -26,12 +28,12 @@ const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
     data.service = service?.serviceName;
 
     // add appointment from appointments collection in db
-    axios
+    axiosInterceptor
       .post("http://localhost:5000/appointments", data)
       .then((res) => {
         if (res.data.insertedId) {
           // update(add) bookedDates array in services collection
-          axios
+          axiosInterceptor
             .patch("http://localhost:5000/services/addDate", {
               _id: service._id,
               bookedSlotTime: data.slotTime,
