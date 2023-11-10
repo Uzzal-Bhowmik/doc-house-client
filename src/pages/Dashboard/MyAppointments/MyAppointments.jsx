@@ -21,14 +21,14 @@ const MyAppointments = () => {
   const [appointmentDates, setAppointmentDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState("all");
   const [appointmentsDidUpdate, setAppointmentsDidUpdate] = useState(false);
-  const [axiosSecure] = useAxiosSecure();
+  const [axiosInterceptor] = useAxiosSecure();
 
   // load user appointments data
   useEffect(() => {
-    axiosSecure.get(`/appointments?email=${user?.email}`).then((res) => {
+    axiosInterceptor.get(`/appointments?email=${user?.email}`).then((res) => {
       setAllAppointments(res.data);
     });
-  }, [user, appointmentsDidUpdate, axiosSecure]);
+  }, [user, appointmentsDidUpdate, axiosInterceptor]);
 
   // set appointment dates
   useEffect(() => {

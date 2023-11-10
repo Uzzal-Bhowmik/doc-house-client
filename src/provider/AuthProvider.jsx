@@ -56,6 +56,8 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         localStorage.removeItem("doc-house-jwt-token"); // remove jwt token when user logged out
+
+        setIsLoading(false);
       }
     });
 

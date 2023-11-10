@@ -8,12 +8,12 @@ const useAxiosSecure = () => {
   const { logout } = useAuthContext();
 
   // Create an interceptor instance of Axios with a base URL
-  const axiosSecure = axios.create({
+  const axiosInterceptor = axios.create({
     baseURL: "http://localhost:5000",
   });
 
   // Add an interceptor to inject the authorization header
-  axiosSecure.interceptors.request.use(
+  axiosInterceptor.interceptors.request.use(
     (config) => {
       // Get the access token from localStorage
       const accessToken = localStorage.getItem("doc-house-jwt-token");
@@ -31,7 +31,7 @@ const useAxiosSecure = () => {
   );
 
   // Add an interceptor to handle 401 and 403 responses
-  axiosSecure.interceptors.response.use(
+  axiosInterceptor.interceptors.response.use(
     (response) => {
       return response;
     },
@@ -42,10 +42,9 @@ const useAxiosSecure = () => {
       ) {
         // Unauthorized or Forbidden status received, log the user out and redirect to the login page
         logout()
-          .then(() => {
-            navigate("/login"); // Redirect to the login page
-          })
+          .then(() => {})
           .catch((err) => console.error(err));
+        navigate("/login"); // Redirect to the login page
       }
       return Promise.reject(error);
     }
@@ -54,12 +53,12 @@ const useAxiosSecure = () => {
   // Cleanup the interceptor on unmount
   useEffect(() => {
     return () => {
-      axiosSecure.interceptors.request.eject(axiosSecure);
-      axiosSecure.interceptors.response.eject(axiosSecure);
+      axiosInterceptor.interceptors.request.eject(axiosInterceptor);
+      axiosInterceptor.interceptors.response.eject(axiosInterceptor);
     };
-  }, [axiosSecure]);
+  }, [axiosInterceptor]);
 
-  return [axiosSecure];
+  return [axiosInterceptor];
 };
 
 export default useAxiosSecure;
