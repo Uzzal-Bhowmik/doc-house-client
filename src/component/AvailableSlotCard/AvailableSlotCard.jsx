@@ -10,7 +10,6 @@ import {
 } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import useAuthContext from "../../hooks/useAuthContext";
-import axios from "axios";
 import useServices from "../../hooks/useServices";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -26,6 +25,7 @@ const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
   const handleBookAppointment = (data) => {
     // add service name to data obj
     data.service = service?.serviceName;
+    data["price"] = parseFloat(data.price.replace("$", ""));
 
     // add appointment from appointments collection in db
     axiosInterceptor
@@ -107,6 +107,12 @@ const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
                       {...register("email")}
                       defaultValue={user?.email && user?.email}
                       readOnly={user?.email}
+                    />
+                    <input
+                      type="text"
+                      {...register("price")}
+                      defaultValue={"$" + service?.price}
+                      readOnly={service?.price}
                     />
                     <input
                       type="text"
