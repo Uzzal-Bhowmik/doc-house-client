@@ -130,16 +130,19 @@ const MyAppointments = () => {
       if (result.isConfirmed) {
         // remove appointment from appointments collection in db
         axiosInterceptor
-          .delete(`http://localhost:5000/appointments/${_id}`)
+          .delete(`https://doc-house-server.onrender.com/appointments/${_id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               // update(remove) bookedDates array in services collection
               axiosInterceptor
-                .patch("http://localhost:5000/services/deleteDate", {
-                  serviceName,
-                  bookedSlotTime,
-                  bookedDate,
-                })
+                .patch(
+                  "https://doc-house-server.onrender.com/services/deleteDate",
+                  {
+                    serviceName,
+                    bookedSlotTime,
+                    bookedDate,
+                  }
+                )
                 .then((res) => {
                   if (res.data.modifiedCount > 0) {
                     refetch();
@@ -239,24 +242,7 @@ const MyAppointments = () => {
                   {appointment.slotTime}
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#d5d53d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="cursor-pointer"
-                    >
-                      <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-                      <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-                    </svg>
-                    {/* --------------------- */}
-
+                  <div className="flex justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

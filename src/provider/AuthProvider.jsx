@@ -49,7 +49,9 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", { userEmail: currentUser.email })
+          .post("https://doc-house-server.onrender.com/jwt", {
+            userEmail: currentUser.email,
+          })
           .then((res) => {
             localStorage.setItem("doc-house-jwt-token", res.data.token); // set jwt token to local-storage when user logged in
             setIsLoading(false);

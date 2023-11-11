@@ -48,7 +48,7 @@ const Register = () => {
                   .then(() => {
                     // set user data to db
                     axios
-                      .post("http://localhost:5000/users", {
+                      .post("https://doc-house-server.onrender.com/users", {
                         name: data.name,
                         email: data.email,
                         createdAt: new Date(),
