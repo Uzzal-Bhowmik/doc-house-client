@@ -6,7 +6,6 @@ import useAxiosSecure from "./useAxiosSecure";
 const useAdmin = () => {
   const [axiosInterceptor] = useAxiosSecure();
   const { user, isLoading } = useAuthContext();
-  // console.log(user == null, isLoading)
 
   const { data: isAdmin = false, isLoading: adminLoading } = useQuery({
     queryKey: ["admin", user?.email],
