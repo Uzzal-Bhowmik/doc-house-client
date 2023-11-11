@@ -20,8 +20,8 @@ const DoctorCard = ({ doctor }) => {
 
   return (
     <Card className="p-3">
-      <CardHeader className="flex-col items-start">
-        <Image className="object-cover rounded-xl" src={img} />
+      <CardHeader className="flex-col items-center w-full bg-[#f9f9f9] rounded-xl">
+        <Image className="object-cover rounded-xl h-[250px]" src={img} />
       </CardHeader>
       <CardBody className="overflow-visible pt-4 pb-2">
         <h4 className="font-bold text-xl">{name}</h4>

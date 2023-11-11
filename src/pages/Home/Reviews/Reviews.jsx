@@ -8,12 +8,12 @@ import axios from "axios";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/reviews")
-      .then((res) => setReviews(res.data));
-  }, []);
-
-  console.log(reviews);
+    if (reviews.length === 0) {
+      axios
+        .get("http://localhost:5000/reviews")
+        .then((res) => setReviews(res.data));
+    }
+  }, [reviews]);
 
   // keen slider
   const [currentSlide, setCurrentSlide] = useState(0);

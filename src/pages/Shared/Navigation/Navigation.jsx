@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navigation.css";
 import {
   Navbar,
@@ -30,7 +30,7 @@ const Navigation = () => {
 
   const menuItems = ["Home", "About", "Appointment"];
 
-  const [isAdmin] = useAdmin();
+  const [isAdmin, adminLoading] = useAdmin();
 
   // logout
   const handleLogout = () => {

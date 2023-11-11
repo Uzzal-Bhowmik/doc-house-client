@@ -51,6 +51,7 @@ const Register = () => {
                       .post("http://localhost:5000/users", {
                         name: data.name,
                         email: data.email,
+                        createdAt: new Date(),
                       })
                       .then((res) => {
                         console.log(res.data);
@@ -122,7 +123,7 @@ const Register = () => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 user-photo">
             <label className="font-bold block mb-2">Photo</label>
             <input
               type="file"

@@ -85,29 +85,31 @@ const MyAppointments = () => {
   useEffect(() => {
     // filter appointments by date
     if (selectedDate === "all") {
-      setFilteredAppointments(allAppointments);
+      setFilteredAppointments(allAppointments && allAppointments);
     } else {
-      const filterByDate = allAppointments.filter(
+      const filterByDate = allAppointments?.filter(
         (appointment) => appointment.appointmentDate === selectedDate
       );
       setFilteredAppointments(filterByDate);
     }
 
     // filter appointments by payment
-    if (selectedPayment === "all") {
-      setFilteredAppointmentsByPay(allAppointments);
-    } else if (selectedPayment === "paid") {
-      const paidAppointments = filteredAppointments.filter(
-        (appointment) => appointment.payment?.status === "paid"
-      );
-      setFilteredAppointmentsByPay(paidAppointments);
-    } else if (selectedPayment === "unpaid") {
-      const unpaid = filteredAppointments.filter(
-        (appointment) => appointment.payment == undefined
-      );
-      setFilteredAppointmentsByPay(unpaid);
+    if (filteredAppointments) {
+      if (selectedPayment === "all") {
+        setFilteredAppointmentsByPay(filteredAppointments);
+      } else if (selectedPayment === "paid") {
+        const paidAppointments = filteredAppointments.filter(
+          (appointment) => appointment.payment?.status === "paid"
+        );
+        setFilteredAppointmentsByPay(paidAppointments);
+      } else if (selectedPayment === "unpaid") {
+        const unpaid = filteredAppointments.filter(
+          (appointment) => appointment.payment == undefined
+        );
+        setFilteredAppointmentsByPay(unpaid);
+      }
     }
-  }, [selectedDate, allAppointments, selectedPayment]);
+  }, [selectedDate, allAppointments, selectedPayment, filteredAppointments]);
 
   // cancel appointment
   const handleCancelAppointment = (
@@ -200,13 +202,27 @@ const MyAppointments = () => {
       ) : (
         <Table aria-label="Example static collection table" className="">
           <TableHeader>
-            <TableColumn className="text-lg">#</TableColumn>
-            <TableColumn className="text-lg">NAME</TableColumn>
-            <TableColumn className="text-lg">SERVICE</TableColumn>
-            <TableColumn className="text-lg">DATE</TableColumn>
-            <TableColumn className="text-lg">TIME</TableColumn>
-            <TableColumn className="text-lg">ACTION</TableColumn>
-            <TableColumn className="text-lg">PAYMENT</TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              #
+            </TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              NAME
+            </TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              SERVICE
+            </TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              DATE
+            </TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              TIME
+            </TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              ACTION
+            </TableColumn>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
+              PAYMENT
+            </TableColumn>
           </TableHeader>
           <TableBody>
             {filteredAppointmentsByPay?.map((appointment, idx) => (
@@ -226,8 +242,8 @@ const MyAppointments = () => {
                   <div className="flex items-center gap-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
+                      width="24"
+                      height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="#d5d53d"
@@ -243,8 +259,8 @@ const MyAppointments = () => {
 
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
+                      width="24"
+                      height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="#ff5454"

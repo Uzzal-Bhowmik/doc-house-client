@@ -29,20 +29,20 @@ const PaymentHistory = () => {
 
       <div>
         <Table isStriped>
-          <TableHeader className="bg-green-500">
-            <TableColumn className="text-lg bg-success text-white">
+          <TableHeader>
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
               EMAIL
             </TableColumn>
-            <TableColumn className="text-lg bg-success text-white">
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
               SERVICE
             </TableColumn>
-            <TableColumn className="text-lg bg-success text-white">
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
               TOTAL PRICE
             </TableColumn>
-            <TableColumn className="text-lg bg-success text-white">
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
               PAYMENT DATE
             </TableColumn>
-            <TableColumn className="text-lg bg-success text-white">
+            <TableColumn className="text-lg bg-green-600 py-3 text-white">
               TRANSACTION ID
             </TableColumn>
           </TableHeader>

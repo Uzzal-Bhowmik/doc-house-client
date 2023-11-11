@@ -63,6 +63,9 @@ const AdminHome = () => {
 
   const sortedYear = patientCountsByYear?.sort((a, b) => a.year - b.year);
 
+  console.log(adminStats);
+  console.log(sortedYear);
+
   return (
     <div>
       {/* Header */}
@@ -140,7 +143,7 @@ const AdminHome = () => {
 
         <div className="w-1/2 p-7 bg-white rounded-xl">
           <h4 className="text-2xl font-bold text-gray-500">
-            Appointment Payment
+            Appointment Payment Status
           </h4>
           <Divider className="mt-2 mb-5" />
 

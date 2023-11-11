@@ -16,6 +16,8 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import MyReview from "../pages/Dashboard/MyReview/MyReview";
+import ManageDoctors from "../pages/Dashboard/ManageDoctors/ManageDoctors";
+import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +93,22 @@ const router = createBrowserRouter([
             element: (
               <AdminRoute>
                 <AllUsers />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "allDoctors",
+            element: (
+              <AdminRoute>
+                <ManageDoctors />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "addDoctor",
+            element: (
+              <AdminRoute>
+                <AddDoctor />
               </AdminRoute>
             ),
           },
