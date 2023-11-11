@@ -22,14 +22,10 @@ const Banner = () => {
             Medical Help Center
           </p>
 
-          <Link>
-            <Button
-              className="bg-[var(--sec-color)] text-white"
-              radius="sm"
-              size="lg"
-            >
+          <Link to="/appointment">
+            <button className="bg-[var(--sec-color)] text-white w-[8rem] h-[3.25rem] rounded-md">
               All Services
-            </Button>
+            </button>
           </Link>
         </div>
 

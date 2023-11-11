@@ -14,6 +14,8 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import MyReview from "../pages/Dashboard/MyReview/MyReview";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
           {
             path: "myAppointments",
             element: <MyAppointments />,
+          },
+          {
+            path: "paymentHistory",
+            element: <PaymentHistory />,
+          },
+          {
+            path: "myReview",
+            element: <MyReview />,
           },
           {
             path: "adminhome",

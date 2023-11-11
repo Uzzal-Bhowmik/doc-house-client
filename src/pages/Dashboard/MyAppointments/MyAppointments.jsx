@@ -29,9 +29,12 @@ const MyAppointments = () => {
   const { user } = useAuthContext();
   const [allAppointments, setAllAppointments] = useState([]);
   const [filteredAppointments, setFilteredAppointments] = useState([]);
+  const [filteredAppointmentsByPay, setFilteredAppointmentsByPay] = useState(
+    []
+  );
   const [appointmentDates, setAppointmentDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState("all");
-  // const [appointmentsDidUpdate, setAppointmentsDidUpdate] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState("all");
   const [axiosInterceptor] = useAxiosSecure();
   const [dataLoading, setDataLoading] = useState(true);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -61,7 +64,7 @@ const MyAppointments = () => {
     setAppointmentDates(filtered);
   }, [allAppointments]);
 
-  // set filtered appointments based on date change
+  // filter appointments based on DATE CHANGE
   const handleDateSelect = (e) => {
     if (e.target.value === "") {
       setSelectedDate("all");
@@ -70,7 +73,17 @@ const MyAppointments = () => {
     }
   };
 
+  // filter appointments based on PAYMENT STATUS
+  const handlePaymentChange = (e) => {
+    if (e.target.value === "") {
+      setSelectedPayment("all");
+    } else {
+      setSelectedPayment(e.target.value);
+    }
+  };
+
   useEffect(() => {
+    // filter appointments by date
     if (selectedDate === "all") {
       setFilteredAppointments(allAppointments);
     } else {
@@ -79,7 +92,22 @@ const MyAppointments = () => {
       );
       setFilteredAppointments(filterByDate);
     }
-  }, [selectedDate, allAppointments]);
+
+    // filter appointments by payment
+    if (selectedPayment === "all") {
+      setFilteredAppointmentsByPay(allAppointments);
+    } else if (selectedPayment === "paid") {
+      const paidAppointments = filteredAppointments.filter(
+        (appointment) => appointment.payment?.status === "paid"
+      );
+      setFilteredAppointmentsByPay(paidAppointments);
+    } else if (selectedPayment === "unpaid") {
+      const unpaid = filteredAppointments.filter(
+        (appointment) => appointment.payment == undefined
+      );
+      setFilteredAppointmentsByPay(unpaid);
+    }
+  }, [selectedDate, allAppointments, selectedPayment]);
 
   // cancel appointment
   const handleCancelAppointment = (
@@ -135,19 +163,36 @@ const MyAppointments = () => {
           My Appointments: {allAppointments.length}
         </h3>
 
-        <Select
-          label="Select Date"
-          className="max-w-[230px] font-bold text-black"
-          variant="faded"
-          size="sm"
-          onChange={handleDateSelect}
-        >
-          {appointmentDates?.map((date) => (
-            <SelectItem key={date} value={date}>
-              {date}
+        <div className="w-1/2 flex items-center justify-between">
+          <Select
+            label="Select Payment"
+            className="max-w-[230px] font-bold text-black"
+            size="sm"
+            color="warning"
+            onChange={handlePaymentChange}
+          >
+            <SelectItem key={"paid"} value={"paid"}>
+              Paid
             </SelectItem>
-          ))}
-        </Select>
+            <SelectItem key={"unpaid"} value={"unpaid"}>
+              Unpaid
+            </SelectItem>
+          </Select>
+
+          <Select
+            label="Select Date"
+            className="max-w-[230px] font-bold text-black"
+            size="sm"
+            color="warning"
+            onChange={handleDateSelect}
+          >
+            {appointmentDates?.map((date) => (
+              <SelectItem key={date} value={date}>
+                {date}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
       </div>
 
       {dataLoading ? (
@@ -164,7 +209,7 @@ const MyAppointments = () => {
             <TableColumn className="text-lg">PAYMENT</TableColumn>
           </TableHeader>
           <TableBody>
-            {filteredAppointments?.map((appointment, idx) => (
+            {filteredAppointmentsByPay?.map((appointment, idx) => (
               <TableRow key={appointment._id}>
                 <TableCell className="text-md font-medium">{idx + 1}</TableCell>
                 <TableCell className="text-md font-medium">
@@ -281,6 +326,7 @@ const MyAppointments = () => {
                 <Payment
                   price={selectedAppointment?.price}
                   appointmentId={selectedAppointment?._id}
+                  serviceName={selectedAppointment?.service}
                 />
                 {/* ---------- */}
 

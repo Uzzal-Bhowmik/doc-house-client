@@ -6,7 +6,7 @@ import useAuthContext from "../../../hooks/useAuthContext";
 import { BiBadgeCheck } from "react-icons/bi";
 import useAppointments from "../../../hooks/useAppointments";
 
-const CheckoutForm = ({ price, appointmentId }) => {
+const CheckoutForm = ({ price, appointmentId, serviceName }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuthContext();
@@ -84,6 +84,7 @@ const CheckoutForm = ({ price, appointmentId }) => {
                 appointmentId,
                 transactionId: paymentIntent.id,
                 price,
+                serviceName,
                 date: new Date(),
               })
               .then((res) => {
