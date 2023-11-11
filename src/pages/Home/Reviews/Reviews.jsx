@@ -8,14 +8,12 @@ import axios from "axios";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    // fetch("/reviews.json")
-    //   .then((res) => res.json())
-    //   .then((data) => setReviews(data));
-
     axios
       .get("http://localhost:5000/reviews")
       .then((res) => setReviews(res.data));
   }, []);
+
+  console.log(reviews);
 
   // keen slider
   const [currentSlide, setCurrentSlide] = useState(0);

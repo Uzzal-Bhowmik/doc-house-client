@@ -1,15 +1,21 @@
 import { Rating } from "@smastrom/react-rating";
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import "./MyReview.css";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuthContext from "../../../hooks/useAuthContext";
+import Swal from "sweetalert2";
 
 const MyReview = () => {
+  const [axiosInterceptor] = useAxiosSecure();
+  const { user } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     control,
+    reset,
   } = useForm({
     mode: "onBlur",
     defaultValues: {
@@ -18,13 +24,25 @@ const MyReview = () => {
   });
 
   const handleReview = (data) => {
-    console.log(data);
+    setIsLoading(true);
+
+    const review = { ...data, img: user?.photoURL, email: user?.email };
+    axiosInterceptor.post("/reviews", review).then((res) => {
+      if (res.data.insertedId) {
+        setIsLoading(false);
+        reset();
+
+        Swal.fire({
+          title: "Marvellous!",
+          text: "Thanks for giving us your feedback 💖",
+          icon: "success",
+        });
+      }
+    });
   };
 
   return (
     <div>
-      {/* <h1 className="text-4xl font-semibold">Tell Us Your Experience</h1> */}
-
       <form
         onSubmit={handleSubmit(handleReview)}
         className="review-form bg-white shadow-md rounded-xl"
@@ -100,6 +118,7 @@ const MyReview = () => {
         <button
           type="submit"
           className="bg-primary-500 text-white font-bold w-[170px] h-[40px] rounded-sm mt-5"
+          disabled={isLoading}
         >
           Submit
         </button>

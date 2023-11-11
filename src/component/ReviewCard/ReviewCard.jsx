@@ -1,9 +1,9 @@
 import React from "react";
 import "./ReviewCard.css";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft, FaStar } from "react-icons/fa";
 
 const ReviewCard = ({ singleReview }) => {
-  const { name, img, review, profession } = singleReview;
+  const { name, img, review, profession, rating } = singleReview;
 
   return (
     <div className="keen-slider__slide border rounded-xl">
@@ -12,7 +12,15 @@ const ReviewCard = ({ singleReview }) => {
           <img src={img} />
           <div className="ms-3">
             <h5 className="text-xl font-bold">{name}</h5>
-            <p className="text-gray-400">{profession}</p>
+            <div className="flex items-center gap-4">
+              <p className="text-gray-400">{profession}</p>
+              {rating && (
+                <span className="flex items-center text-yellow-500 font-bold">
+                  (<FaStar />
+                  <span className="ms-1 pt-[1px]">{rating}/5</span>)
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
