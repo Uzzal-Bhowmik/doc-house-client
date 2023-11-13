@@ -56,12 +56,12 @@ const PaymentHistory = () => {
                   {payment.serviceName}
                 </TableCell>
                 <TableCell className="text-md font-medium">
-                  {payment.price}
+                  ${payment.price}
                 </TableCell>
                 <TableCell className="text-md font-medium">
                   {dateFormat(payment?.date, "dddd, mmmm dS, yyyy, h:MM:ss TT")}
                 </TableCell>
-                <TableCell className="text-md font-medium">
+                <TableCell className="text-md font-medium text-success-500">
                   {payment.transactionId}
                 </TableCell>
               </TableRow>

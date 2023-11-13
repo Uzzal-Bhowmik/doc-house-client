@@ -1,14 +1,13 @@
 import React from "react";
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 import { Spinner } from "@nextui-org/react";
 import { Navigate, useLocation } from "react-router-dom";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const PrivateRoute = ({ children }) => {
-  const { user, isLoading } = useContext(AuthContext);
+  const { user, isLoading } = useAuthContext();
   const location = useLocation();
 
-  if (isLoading) {
+  if (isLoading === true) {
     return (
       <Spinner
         color="success"

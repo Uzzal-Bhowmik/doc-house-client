@@ -63,9 +63,6 @@ const AdminHome = () => {
 
   const sortedYear = patientCountsByYear?.sort((a, b) => a.year - b.year);
 
-  console.log(adminStats);
-  console.log(sortedYear);
-
   return (
     <div>
       {/* Header */}

@@ -29,12 +29,12 @@ const AvailableSlotCard = ({ slotObject, service, selectedDate }) => {
 
     // add appointment from appointments collection in db
     axiosInterceptor
-      .post("https://doc-house-server.onrender.com/appointments", data)
+      .post("http://localhost:5000/appointments", data)
       .then((res) => {
         if (res.data.insertedId) {
           // update(add) bookedDates array in services collection
           axiosInterceptor
-            .patch("https://doc-house-server.onrender.com/services/addDate", {
+            .patch("http://localhost:5000/services/addDate", {
               _id: service._id,
               bookedSlotTime: data.slotTime,
               bookedDate: data.appointmentDate,

@@ -45,26 +45,28 @@ const AuthProvider = ({ children }) => {
   // auth state observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-
+      // setUser(currentUser);
       if (currentUser) {
         axios
-          .post("https://doc-house-server.onrender.com/jwt", {
+          .post("http://localhost:5000/jwt", {
             userEmail: currentUser.email,
           })
           .then((res) => {
             localStorage.setItem("doc-house-jwt-token", res.data.token); // set jwt token to local-storage when user logged in
+
+            setUser(currentUser);
             setIsLoading(false);
           });
       } else {
         localStorage.removeItem("doc-house-jwt-token"); // remove jwt token when user logged out
 
+        setUser(null);
         setIsLoading(false);
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user?.uid]);
 
   const value = { signIn, signUp, logout, updateUserProfile, user, isLoading };
   return (

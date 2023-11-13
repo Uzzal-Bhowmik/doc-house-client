@@ -130,19 +130,16 @@ const MyAppointments = () => {
       if (result.isConfirmed) {
         // remove appointment from appointments collection in db
         axiosInterceptor
-          .delete(`https://doc-house-server.onrender.com/appointments/${_id}`)
+          .delete(`http://localhost:5000/appointments/${_id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               // update(remove) bookedDates array in services collection
               axiosInterceptor
-                .patch(
-                  "https://doc-house-server.onrender.com/services/deleteDate",
-                  {
-                    serviceName,
-                    bookedSlotTime,
-                    bookedDate,
-                  }
-                )
+                .patch("http://localhost:5000/services/deleteDate", {
+                  serviceName,
+                  bookedSlotTime,
+                  bookedDate,
+                })
                 .then((res) => {
                   if (res.data.modifiedCount > 0) {
                     refetch();

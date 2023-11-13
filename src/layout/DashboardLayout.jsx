@@ -11,7 +11,11 @@ const DashboardLayout = () => {
     <div>
       <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
         {/* Sidebar  */}
-        <div className="fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64 bg-[#07332f] h-full text-white transition-all duration-300 border-none sidebar">
+        <div
+          className={`fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64  h-full text-white transition-all duration-300 border-none sidebar ${
+            isAdmin ? "bg-[#2828bc]" : "bg-[#07332f]"
+          }`}
+        >
           <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow mt-24">
             {isAdmin ? (
               // ADMIN only route
@@ -26,7 +30,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to={"/dashboard/adminhome"}
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover: pr-6`}
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg
@@ -53,7 +57,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to={"/dashboard/allUsers"}
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6`}
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <FiUsers className="w-5 h-5" />
@@ -67,7 +71,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to={"/dashboard/allDoctors"}
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6`}
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <FaUserDoctor className="w-4 h-4" />
@@ -81,7 +85,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to={"/dashboard/addDoctor"}
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952] text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6`}
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <FaUserPlus className="w-5 h-5" />
@@ -104,7 +108,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/"
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952]  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg
@@ -130,7 +134,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to="/appointment"
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#0c5952]  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
+                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6"
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg

@@ -8,6 +8,8 @@ const AdminRoute = ({ children }) => {
   const { user, isLoading } = useAuthContext();
   const [isAdmin, adminLoading] = useAdmin();
 
+  console.log("admin route:", user, isLoading, isAdmin, adminLoading);
+
   if (isLoading || adminLoading) {
     return <Spinner size="lg" />;
   }

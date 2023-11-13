@@ -7,7 +7,7 @@ const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
     axios
-      .get("https://doc-house-server.onrender.com/doctors")
+      .get("http://localhost:5000/doctors")
       .then((res) => setDoctors(res.data));
   }, []);
   return (

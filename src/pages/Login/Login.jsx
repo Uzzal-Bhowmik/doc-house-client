@@ -5,18 +5,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 import { Spinner } from "@nextui-org/react";
-import useAdmin from "../../hooks/useAdmin";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const [loginLoading, setLoginLoading] = useState(false);
+  const { user } = useAuthContext();
 
   const { signIn } = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  // const [, , refetch] = useAdmin();
 
   const handleLogin = (data) => {
     setLoginLoading(true);
@@ -24,10 +24,8 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         toast.success(`Authenticated as ${result.user?.email}`);
-        // refetch();
 
-        // console.log(from.includes("dashboard"));
-        if (from.includes("dashboard")) {
+        if (from.includes("dashboard") && result.user) {
           navigate("/");
         } else {
           navigate(from, { replace: true });

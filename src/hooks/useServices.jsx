@@ -6,9 +6,7 @@ const useServices = () => {
   const { data: services = [], refetch } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://doc-house-server.onrender.com/services"
-      );
+      const res = await axios.get("http://localhost:5000/services");
       return res.data;
     },
   });

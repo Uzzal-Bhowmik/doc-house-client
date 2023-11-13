@@ -7,12 +7,12 @@ const useAdmin = () => {
   const [axiosInterceptor] = useAxiosSecure();
   const { user, isLoading } = useAuthContext();
 
-  const { data: isAdmin = false, isLoading: adminLoading } = useQuery({
+  const { data: isAdmin = null, isLoading: adminLoading } = useQuery({
     queryKey: ["admin", user?.email],
     enabled:
-      user != null &&
       !isLoading &&
-      localStorage.getItem("doc-house-jwt-token") != null,
+      user !== null &&
+      localStorage.getItem("doc-house-jwt-token") !== null,
     queryFn: async () => {
       const res = await axiosInterceptor.get(`/users/admin/${user.email}`);
       return res.data.isAdmin;

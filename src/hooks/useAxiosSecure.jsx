@@ -5,7 +5,7 @@ import useAuthContext from "./useAuthContext";
 
 // Create an interceptor instance of Axios with a base URL
 const axiosInterceptor = axios.create({
-  baseURL: "https://doc-house-server.onrender.com",
+  baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {

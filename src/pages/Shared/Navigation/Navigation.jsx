@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Navigation.css";
 import {
   Navbar,
@@ -30,7 +30,7 @@ const Navigation = () => {
 
   const menuItems = ["Home", "About", "Appointment"];
 
-  const [isAdmin, adminLoading] = useAdmin();
+  const [isAdmin] = useAdmin();
 
   // logout
   const handleLogout = () => {
@@ -49,7 +49,7 @@ const Navigation = () => {
       onMenuOpenChange={setIsMenuOpen}
       className={`py-4 absolute top-0 bg-[var(--pri-color)] text-[#f3f3f3] z-10 ${
         isDashboard && "dashboard-nav"
-      }`}
+      } ${isAdmin && isDashboard && "admin-nav"}`}
       shouldHideOnScroll
     >
       {/* brand logo */}
@@ -96,41 +96,107 @@ const Navigation = () => {
             {user?.uid ? (
               <NavbarItem className="flex">
                 <p className="text-lg flex items-center space-x-3">
-                  <Dropdown>
+                  <Dropdown placement="bottom-end">
                     <DropdownTrigger>
-                      <Avatar src={user?.photoURL} className="cursor-pointer" />
+                      <Avatar
+                        src={user?.photoURL}
+                        className="cursor-pointer"
+                        isBordered
+                        as="button"
+                        color="success"
+                      />
                     </DropdownTrigger>
 
                     {isAdmin ? (
                       // admin dropdown menu
-                      <DropdownMenu aria-label="Dropdown">
-                        <DropdownItem key={"my_appointments"}>
-                          <Link to="/dashboard/adminhome">Dashboard</Link>
+                      <DropdownMenu aria-label="Dropdown" variant="flat">
+                        <DropdownItem key="profile" className="h-14 gap-2 mb-2">
+                          <p className="font-semibold">Signed in as</p>
+                          <p className="font-semibold">
+                            {user?.email}{" "}
+                            <span className="text-success-600">(Admin)</span>
+                          </p>
+                        </DropdownItem>
+
+                        <DropdownItem key={"adminhome"}>
+                          <Link to="/dashboard/adminhome" bg-blue-600>
+                            Dashboard
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem key={"allusers"}>
+                          <Link to="/dashboard/allUsers" bg-blue-600>
+                            Manage Users
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem key={"alldoctors"}>
+                          <Link to="/dashboard/allDoctors" bg-blue-600>
+                            Manage Doctors
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem key={"adddoctor"}>
+                          <Link to="/dashboard/addDoctor" bg-blue-600>
+                            Add Doctors
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem key={"logout button"} className="mt-2">
+                          <Button
+                            color="success"
+                            variant="bordered"
+                            onClick={handleLogout}
+                            type="button"
+                            className="w-full"
+                          >
+                            Log Out
+                          </Button>
                         </DropdownItem>
                       </DropdownMenu>
                     ) : (
                       // user dropdown menu
-                      <DropdownMenu aria-label="Dropdown">
+                      <DropdownMenu aria-label="Dropdown" variant="flat">
+                        <DropdownItem key="profile" className="h-14 gap-2 mb-2">
+                          <p className="font-semibold">Signed in as</p>
+                          <p className="font-semibold">{user?.email}</p>
+                        </DropdownItem>
                         <DropdownItem key={"user_home"}>
                           <Link to="/dashboard/userhome">Dashboard</Link>
                         </DropdownItem>
+
                         <DropdownItem key={"my_appointments"}>
                           <Link to="/dashboard/myAppointments">
                             My Appointments
                           </Link>
                         </DropdownItem>
+
+                        <DropdownItem key={"my_appointments"}>
+                          <Link to="/dashboard/paymentHistory">
+                            Payments History
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem key={"my_appointments"}>
+                          <Link to="/dashboard/myReview">
+                            Rate Your Experience
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem key={"logout button"} className="mt-2">
+                          <Button
+                            color="success"
+                            variant="bordered"
+                            onClick={handleLogout}
+                            type="button"
+                            className="w-full"
+                          >
+                            Log Out
+                          </Button>
+                        </DropdownItem>
                       </DropdownMenu>
                     )}
                   </Dropdown>
-
-                  <Button
-                    color="success"
-                    variant="bordered"
-                    onClick={handleLogout}
-                    type="button"
-                  >
-                    Log Out
-                  </Button>
                 </p>
               </NavbarItem>
             ) : (

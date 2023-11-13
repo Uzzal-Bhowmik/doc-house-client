@@ -1,3 +1,19 @@
 .dashboard-nav header {
   max-width: 100%;
 }
+.admin-nav {
+  background-color: #2828bc !important;
+}
+
+li[role="menuitem"] {
+  padding: 0;
+}
+li[role="menuitem"] span a {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+}
+li[role="menuitem"] span p {
+  padding: 6px 8px 0 8px;
+}
