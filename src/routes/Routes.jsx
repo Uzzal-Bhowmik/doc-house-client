@@ -32,7 +32,9 @@ const router = createBrowserRouter([
       {
         path: "doctor/:id",
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/doctors/${params.id}`),
+          await fetch(
+            `https://doc-house-server.onrender.com/doctors/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <DynamicDoctor />
