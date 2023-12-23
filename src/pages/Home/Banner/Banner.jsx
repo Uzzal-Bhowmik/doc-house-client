@@ -8,29 +8,34 @@ import fullcap from "../../../assets/fullcap.png";
 import circle from "../../../assets/circle.png";
 import dot from "../../../assets/dot.png";
 import tiltFullcap from "../../../assets/tilt-fullcap.png";
+import { Slide } from "react-awesome-reveal";
 
 const Banner = () => {
   return (
     <div className="h-screen bg-[var(--pri-color)]">
       <div className="container flex justify-center items-center pt-16">
         <div className="text-white md:w-[40%]">
-          <h1 className="text-6xl font-bold leading-normal">
-            Your Best Medical Help Center
-          </h1>
-          <p className="mt-5 mb-8">
-            Where Compassionate Care Meets Cutting-Edge Medicine: Your Ultimate
-            Medical Help Center
-          </p>
+          <Slide direction="left" duration={2000} triggerOnce>
+            <h1 className="text-6xl font-bold leading-normal">
+              Your Best Medical Help Center
+            </h1>
+            <p className="mt-5 mb-8">
+              Where Compassionate Care Meets Cutting-Edge Medicine: Your
+              Ultimate Medical Help Center
+            </p>
 
-          <Link to="/appointment">
-            <button className="bg-[var(--sec-color)] text-white w-[8rem] h-[3rem] rounded-md">
-              All Services
-            </button>
-          </Link>
+            <Link to="/appointment">
+              <button className="bg-[var(--sec-color)] text-white w-[8rem] h-[3rem] rounded-md">
+                All Services
+              </button>
+            </Link>
+          </Slide>
         </div>
 
         <div className="md:w-[50%] z-30">
-          <img src={docGroup} alt="" className="block md:ms-auto" />
+          <Slide direction="right" duration={2000} triggerOnce>
+            <img src={docGroup} alt="" className="block md:ms-auto" />
+          </Slide>
         </div>
       </div>
 

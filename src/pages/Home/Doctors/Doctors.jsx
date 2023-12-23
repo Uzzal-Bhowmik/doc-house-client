@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Doctors.css";
 import DoctorCard from "../../../component/DoctorCard/DoctorCard";
 import axios from "axios";
+import { Slide } from "react-awesome-reveal";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -24,9 +25,11 @@ const Doctors = () => {
       </div>
 
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {doctors.map((doctor) => (
-          <DoctorCard key={doctor._id} doctor={doctor} />
-        ))}
+        <Slide direction="up" duration={1200} triggerOnce cascade>
+          {doctors.map((doctor) => (
+            <DoctorCard key={doctor._id} doctor={doctor} />
+          ))}
+        </Slide>
       </div>
     </div>
   );

@@ -143,8 +143,8 @@ const Register = () => {
             ) : (
               <Spinner
                 size="md"
-                color="warning"
-                labelColor="warning"
+                color="success"
+                labelColor="success"
                 className="inline-block mx-auto mt-2"
               />
             )}

@@ -1,3 +1,9 @@
+nav li {
+  font-family: "Poppins", sans-serif !important;
+}
+nav header {
+  max-width: 85% !important;
+}
 .dashboard-nav header {
   max-width: 100%;
 }

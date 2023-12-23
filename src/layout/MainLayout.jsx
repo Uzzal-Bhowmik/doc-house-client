@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../pages/Shared/Navigation/Navigation";
 import Footer from "../pages/Shared/Footer/Footer";
 import { Toaster } from "react-hot-toast";

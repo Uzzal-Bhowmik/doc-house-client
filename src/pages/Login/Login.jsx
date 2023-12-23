@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import LoginBanner from "../../component/LoginBanner/LoginBanner";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 import { Spinner } from "@nextui-org/react";
 import useAuthContext from "../../hooks/useAuthContext";
@@ -10,9 +9,7 @@ import useAuthContext from "../../hooks/useAuthContext";
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const [loginLoading, setLoginLoading] = useState(false);
-  const { user } = useAuthContext();
-
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuthContext();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,11 +27,11 @@ const Login = () => {
         } else {
           navigate(from, { replace: true });
         }
+        setLoginLoading(false);
       })
       .catch((err) => toast.error(`Login Failed: ${err.code}`));
-    setLoginLoading(false);
   };
-
+  console.log(loginLoading);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
       <LoginBanner></LoginBanner>
@@ -81,8 +78,8 @@ const Login = () => {
             ) : (
               <Spinner
                 size="md"
-                color="warning"
-                labelColor="warning"
+                color="success"
+                labelColor="success"
                 className="inline-block mx-auto mt-2"
               />
             )}
