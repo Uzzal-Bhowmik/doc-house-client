@@ -10,7 +10,7 @@ const Reviews = () => {
   useEffect(() => {
     if (reviews.length === 0) {
       axios
-        .get("http://localhost:5000/reviews")
+        .get("https://doc-house-server.onrender.com/reviews")
         .then((res) => setReviews(res.data));
     }
   }, [reviews]);
