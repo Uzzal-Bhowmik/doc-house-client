@@ -1,8 +1,9 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import Navigation from "../pages/Shared/Navigation/Navigation";
 import Footer from "../pages/Shared/Footer/Footer";
 import { Toaster } from "react-hot-toast";
+import ScrollToTop from "../component/ScrollToTop/ScrollToTop";
 
 const MainLayout = () => {
   const pathname = useLocation().pathname;
@@ -12,6 +13,7 @@ const MainLayout = () => {
     pathname.includes("dashboard");
   return (
     <div>
+      <ScrollToTop />
       <Navigation />
       <Outlet />
       {!hideFooter && <Footer />}

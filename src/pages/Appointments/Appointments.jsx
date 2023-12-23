@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import "./Appointments.css";
 import SharedBanner from "../Shared/SharedBanner/SharedBanner";
 import dentalChair from "../../assets/service-chair.png";
 import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
 import useServices from "../../hooks/useServices";
 import ServiceCard from "../../component/ServiceCard/ServiceCard";
 import AvailableSlotCard from "../../component/AvailableSlotCard/AvailableSlotCard";
+import { FaCalendarDays, FaSuitcaseMedical } from "react-icons/fa6";
 
 const Appointments = () => {
   const [selected, setSelected] = useState(new Date());
@@ -27,6 +28,9 @@ const Appointments = () => {
       <SharedBanner route={"Home/Appointment"} title={"Appointment"} />
 
       <div className="container mt-10">
+        <h3 className="text-4xl font-bold mb-5 flex gap-3">
+          <FaCalendarDays /> Select Your Preferred Day
+        </h3>
         <div className="flex justify-around items-center">
           <div>
             <DayPicker
@@ -35,14 +39,16 @@ const Appointments = () => {
               onSelect={setSelected}
               disabled={{ before: new Date() }}
               style={{
-                width: "312px",
-                height: "312px",
+                width: "350px",
+                height: "345px",
                 backgroundColor: "#fff",
+                border: "2px solid lightBlue",
                 borderRadius: "18px",
                 boxShadow: "3px 4px 10px 2px rgba(0, 0, 0, 0.05)",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                paddingTop: "1rem",
               }}
             />
           </div>
@@ -53,11 +59,15 @@ const Appointments = () => {
         </div>
 
         <div className="mt-28">
-          <div className="text-center space-y-2">
-            <p className="text-lg text-[var(--sec-color)]">
-              Available Services on {selectedDate}
+          <div className="">
+            <h1 className="text-4xl font-bold flex gap-3">
+              <FaSuitcaseMedical />
+              Please select a service
+            </h1>
+            <p className="pl-12 pt-2 text-xl text-[var(--sec-color)]">
+              Available Services on{" "}
+              <span className="font-extrabold">{selectedDate}</span>
             </p>
-            <h1 className="text-5xl">Please select a service</h1>
           </div>
 
           {/* services */}
@@ -67,6 +77,7 @@ const Appointments = () => {
                 key={service._id}
                 service={service}
                 handleService={handleService}
+                selectedServiceId={selectedServiceId}
               />
             ))}
           </div>

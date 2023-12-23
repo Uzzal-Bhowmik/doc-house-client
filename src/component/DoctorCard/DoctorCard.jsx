@@ -53,14 +53,18 @@ const DoctorCard = ({ doctor }) => {
           </div>
         </div>
 
-        <Link className="mt-4 block" to={`/doctor/${_id}`}>
-          <Button
+        <Link className="mt-4 block" to={`doctor/${_id}`}>
+          {/* <Button
             color="warning"
             variant="ghost"
             className="block w-full font-bold text-[var(--sec-color)] border-[var(--sec-color)]"
+            type="button"
           >
             View Profile
-          </Button>
+          </Button> */}
+          <button className="block font-bold text-[var(--sec-color)] border-[var(--sec-color)]">
+            View Profile
+          </button>
         </Link>
       </CardBody>
     </Card>

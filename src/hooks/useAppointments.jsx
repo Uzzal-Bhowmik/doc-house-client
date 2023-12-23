@@ -4,10 +4,14 @@ import useAuthContext from "./useAuthContext";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useAppointments = () => {
-  const { user, isLoading } = useAuthContext();
+  const { user, isLoading: isUserLoading } = useAuthContext();
   const [axiosInterceptor] = useAxiosSecure();
 
-  const { data: userAppointments = [], refetch } = useQuery(
+  const {
+    data: userAppointments = [],
+    refetch,
+    isLoading: isDataLoading,
+  } = useQuery(
     ["myAppointments"],
     async () => {
       const res = await axiosInterceptor.get(
@@ -15,10 +19,10 @@ const useAppointments = () => {
       );
       return res.data;
     },
-    { enabled: !isLoading }
+    { enabled: !isUserLoading }
   );
 
-  return [userAppointments, refetch];
+  return [userAppointments, refetch, isDataLoading];
 };
 
 export default useAppointments;

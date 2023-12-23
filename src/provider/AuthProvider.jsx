@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
       // setUser(currentUser);
       if (currentUser) {
         axios
-          .post("https://doc-house-server.onrender.com/jwt", {
+          .post("http://localhost:5000/jwt", {
             userEmail: currentUser.email,
           })
           .then((res) => {

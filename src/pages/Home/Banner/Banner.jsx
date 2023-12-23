@@ -23,7 +23,7 @@ const Banner = () => {
           </p>
 
           <Link to="/appointment">
-            <button className="bg-[var(--sec-color)] text-white w-[8rem] h-[3.25rem] rounded-md">
+            <button className="bg-[var(--sec-color)] text-white w-[8rem] h-[3rem] rounded-md">
               All Services
             </button>
           </Link>

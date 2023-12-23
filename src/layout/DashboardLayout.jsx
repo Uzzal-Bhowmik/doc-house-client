@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import { FiUsers } from "react-icons/fi";
-import { FaUserDoctor, FaUserPlus } from "react-icons/fa6";
+import { FaUserDoctor, FaUserPlus, FaCalendarDays } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
@@ -13,7 +13,7 @@ const DashboardLayout = () => {
         {/* Sidebar  */}
         <div
           className={`fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64  h-full text-white transition-all duration-300 border-none sidebar ${
-            isAdmin ? "bg-[#2828bc]" : "bg-[#07332f]"
+            isAdmin ? "bg-[#1b1b9c]" : "bg-[#07332f]"
           }`}
         >
           <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow mt-24">
@@ -30,7 +30,7 @@ const DashboardLayout = () => {
                 <li>
                   <Link
                     to={"/dashboard/adminhome"}
-                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover: pr-6`}
+                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6`}
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg
@@ -64,6 +64,20 @@ const DashboardLayout = () => {
                     </span>
                     <span className="ml-2 text-sm tracking-wide truncate">
                       Manage Users
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to={"/dashboard/allAppointments"}
+                    className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-[#20f1de] pr-6`}
+                  >
+                    <span className="inline-flex justify-center items-center ml-4">
+                      <FaCalendarDays className="w-4 h-4" />
+                    </span>
+                    <span className="ml-2 text-sm tracking-wide truncate">
+                      Manage Appointments
                     </span>
                   </Link>
                 </li>

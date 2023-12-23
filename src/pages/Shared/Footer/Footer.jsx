@@ -20,10 +20,6 @@ const Footer = () => {
               Your Trusted Haven for Healthcare Excellence. Your Journey to
               Health Starts Here at DocHouse.
             </p>
-
-            <Button variant="ghost" color="warning">
-              Appointment
-            </Button>
           </div>
         </div>
 

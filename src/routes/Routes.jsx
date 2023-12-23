@@ -18,6 +18,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import MyReview from "../pages/Dashboard/MyReview/MyReview";
 import ManageDoctors from "../pages/Dashboard/ManageDoctors/ManageDoctors";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
+import AllAppointments from "../pages/Dashboard/AllApointments/AllAppointments";
 
 const router = createBrowserRouter([
   {
@@ -32,9 +33,7 @@ const router = createBrowserRouter([
       {
         path: "doctor/:id",
         loader: async ({ params }) =>
-          await fetch(
-            `https://doc-house-server.onrender.com/doctors/${params.id}`
-          ),
+          await fetch(`http://localhost:5000/doctors/${params.id}`),
         element: (
           <PrivateRoute>
             <DynamicDoctor />
@@ -95,6 +94,14 @@ const router = createBrowserRouter([
             element: (
               <AdminRoute>
                 <AllUsers />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "allAppointments",
+            element: (
+              <AdminRoute>
+                <AllAppointments />
               </AdminRoute>
             ),
           },
